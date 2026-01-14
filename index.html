@@ -8,144 +8,99 @@
         :root {
             --primary: #00d2ff;
             --secondary: #3a7bd5;
-            --dark-blue: #1e293b;
-            --bg-dark: #0f172a;
+            --bg-dark: #070b14;
             --glass: rgba(255, 255, 255, 0.05);
-            --text-white: #ffffff;
+            --text-main: #ffffff;
+            --text-dim: #cbd5e1;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             font-family: 'Inter', sans-serif;
-            background-color: var(--bg-dark);
-            color: var(--text-white);
+            background: linear-gradient(135deg, #070b14 0%, #0f172a 100%);
+            color: var(--text-main);
             line-height: 1.6;
             overflow-x: hidden;
         }
 
         /* --- ENTRANCE OVERLAY --- */
         #landing-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: var(--bg-dark);
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            display: flex; justify-content: center; align-items: center;
             z-index: 9999;
             transition: transform 0.8s cubic-bezier(0.65, 0, 0.35, 1);
         }
 
         .hide-overlay { transform: translateY(-100%); }
 
-        /* --- ARCH IMAGE DESIGN --- */
+        /* --- ARCH DESIGN --- */
         .arch-container {
-            width: 100%;
-            max-width: 350px;
-            aspect-ratio: 3/4;
-            border-radius: 200px 200px 0 0; /* Signature Arch Shape */
-            overflow: hidden;
-            border: 2px solid var(--primary);
-            margin: 0 auto 2rem;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            width: 100%; max-width: 350px; aspect-ratio: 3/4;
+            border-radius: 200px 200px 0 0;
+            overflow: hidden; border: 2px solid var(--primary);
+            margin: 0 auto; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
         }
 
-        .arch-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-
+        .arch-img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
         .arch-img:hover { transform: scale(1.05); }
 
         /* --- LAYOUT --- */
-        .container { max-width: 1000px; margin: 0 auto; padding: 4rem 2rem; }
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
 
-        .hero {
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
+        header {
+            height: 100vh; display: flex; flex-direction: column;
+            justify-content: center; align-items: center; text-align: center;
         }
 
+        .button-group { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
+
         .btn-main {
-            padding: 1rem 3rem;
-            background: transparent;
-            color: var(--primary);
-            border: 2px solid var(--primary);
-            border-radius: 50px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            cursor: pointer;
-            transition: 0.3s;
+            padding: 1rem 2.5rem; background: transparent;
+            color: var(--primary); border: 2px solid var(--primary);
+            border-radius: 50px; font-weight: 600; text-transform: uppercase;
+            letter-spacing: 1px; cursor: pointer; transition: 0.3s;
         }
 
         .btn-main:hover {
-            background: var(--primary);
-            color: white;
-            box-shadow: 0 0 20px var(--primary);
+            background: var(--primary); color: white;
+            box-shadow: 0 0 25px var(--primary);
         }
 
-        /* --- BENTO STYLE GRID --- */
+        section { padding: 80px 0; }
+
+        .section-title {
+            font-size: 2.2rem; margin-bottom: 2.5rem; color: var(--primary);
+            text-transform: uppercase; letter-spacing: 2px;
+            border-bottom: 2px solid var(--secondary); display: inline-block;
+        }
+
         .bento-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
         }
 
         .glass-card {
-            background: var(--glass);
-            backdrop-filter: blur(10px);
+            background: var(--glass); backdrop-filter: blur(12px);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 2.5rem;
-            border-radius: 20px;
+            padding: 2rem; border-radius: 24px; transition: 0.4s ease;
         }
+
+        .glass-card:hover { transform: translateY(-5px); border-color: var(--primary); }
+
+        .sys-img { width: 100%; border-radius: 15px; margin-bottom: 1rem; border: 1px solid var(--glass); }
 
         .badge {
-            display: inline-block;
-            background: rgba(0, 210, 255, 0.1);
-            border: 1px solid var(--primary);
-            padding: 0.4rem 1rem;
-            border-radius: 10px;
-            margin: 0.3rem;
-            color: var(--primary);
-            font-size: 0.9rem;
+            display: inline-block; background: rgba(0, 210, 255, 0.1);
+            border: 1px solid var(--primary); padding: 0.4rem 1rem;
+            border-radius: 12px; margin: 0.3rem; color: var(--primary); font-weight: 600;
         }
 
-        /* --- FIXED ANIMATIONS --- */
-        .reveal {
-            opacity: 0;
-            transform: translateY(50px);
-            transition: opacity 1s ease-out, transform 1s ease-out;
-            will-change: transform, opacity;
-        }
+        .reveal { opacity: 0; transform: translateY(40px); transition: 0.9s ease-out; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
 
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .section-title {
-            font-size: 2.5rem;
-            margin-bottom: 2rem;
-            color: var(--primary);
-            border-bottom: 2px solid var(--secondary);
-            display: inline-block;
-        }
-
-        footer {
-            text-align: center;
-            padding: 4rem 0;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
+        footer { text-align: center; padding: 5rem 0; border-top: 1px solid rgba(255, 255, 255, 0.1); }
     </style>
 </head>
 <body>
@@ -154,66 +109,93 @@
         <button class="btn-main" onclick="enterPortfolio()">Visit Portfolio</button>
     </div>
 
-    <div class="container">
-        <header class="hero reveal">
-            <div class="arch-container">
-                <img src="photo1.jpg" alt="Sean Gabriel Verano" class="arch-img">
-            </div>
-            <h1 style="font-size: 3.5rem; letter-spacing: -1px;">SEAN GABRIEL VERANO</h1>
-            <p style="font-size: 1.5rem; color: var(--primary);">Portfolio</p>
-        </header>
+    <header class="container reveal">
+        <div class="arch-container" style="margin-bottom: 2rem;">
+            <img src="photo1.jpg" alt="Sean Gabriel Verano" class="arch-img">
+        </div>
+        <h1 style="font-size: 3.5rem; margin-bottom: 0.5rem;">SEAN GABRIEL VERANO</h1>
+        <p style="font-size: 1.5rem; color: var(--primary); margin-bottom: 2rem; font-weight: 600;">Information Technology Professional</p>
+        
+        <div class="button-group">
+            <button class="btn-main" onclick="document.getElementById('about').scrollIntoView({behavior: 'smooth'})">About Me</button>
+            <button class="btn-main" onclick="document.getElementById('systems').scrollIntoView({behavior: 'smooth'})">System Samples</button>
+        </div>
+    </header>
 
-        <section id="about" class="reveal" style="padding: 100px 0;">
+    <div class="container">
+        <section id="about" class="reveal">
             <h2 class="section-title">About Me</h2>
             <div class="glass-card">
-                <p style="font-size: 1.2rem;">Hi! I'm Sean, a dedicated and highly trustworthy professional with a background in Information Technology. I specialize in providing excellent customer service and administrative support to both internal and external stakeholders. I pride myself on maintaining a positive attitude and ensuring the absolute accuracy and thoroughness of every task.</p>
+                <p style="font-size: 1.2rem;">Hi! I'm Sean, a dedicated and highly trustworthy professional with a background in Information Technology. I specialize in providing excellent customer service and administrative support. I pride myself on maintaining a positive attitude and ensuring the absolute accuracy and thoroughness of every task assigned to me.</p>
             </div>
         </section>
 
         <section class="reveal">
             <div style="display: flex; flex-wrap: wrap; gap: 40px; align-items: center;">
                 <div class="arch-container" style="flex: 1; min-width: 300px;">
-                    <img src="photo2.jpg" alt="Graduation Style" class="arch-img">
+                    <img src="photo2.jpg" alt="Education" class="arch-img">
                 </div>
                 <div style="flex: 1; min-width: 300px;">
                     <h2 class="section-title">Education</h2>
                     <p><strong>2023 - PRESENT</strong></p>
-                    <p>Bachelor of Science in Information Technology</p>
-                    <p>Colegio de Sta. Teresa de Avila</p>
+                    <p style="font-size: 1.2rem; margin: 0.5rem 0;">Bachelor of Science in Information Technology</p>
+                    <p style="color: var(--primary);">Colegio de Sta. Teresa de Avila </p>
                 </div>
             </div>
         </section>
 
-        <section class="reveal" style="padding: 100px 0;">
+        <section class="reveal">
             <h2 class="section-title">Technical Toolkit</h2>
+            <div class="glass-card">
+                <div style="display: flex; flex-wrap: wrap; justify-content: center;">
+                    <span class="badge">Vb.net</span> <span class="badge">Python</span>
+                    <span class="badge">JavaScript</span> <span class="badge">MySQL/MariaDB</span>
+                    <span class="badge">Visual Studio Code</span> <span class="badge">Figma</span>
+                    <span class="badge">Canva</span> <span class="badge">Copilot</span>
+                    <span class="badge">Excel</span> <span class="badge">PowerPoint</span> 
+                </div>
+            </div>
+        </section>
+
+        <section id="systems" class="reveal">
+            <h2 class="section-title">System Samples</h2>
             <div class="bento-grid">
                 <div class="glass-card">
-                    <h3 style="color: var(--primary);">Development</h3>
-                    <div style="margin-top: 1rem;">
-                        <span class="badge">Vb.net</span> <span class="badge">Python</span>
-                        <span class="badge">JavaScript</span> <span class="badge">MySQL/MariaDB</span>
-                        <span class="badge">Visual Studio Code</span> 
-                    </div>
+                    <img src="sys1.jpg" alt="Login Module" class="sys-img">
+                    <h4>1st Picture: Login Module</h4>
+                    <p>Secure authentication with role-based access control.</p>
                 </div>
                 <div class="glass-card">
-                    <h3 style="color: var(--primary);">Creative & Productivity</h3>
-                    <div style="margin-top: 1rem;">
-                        <span class="badge">Canva</span> <span class="badge">Figma</span>
-                        <span class="badge">Excel</span> <span class="badge">PowerPoint</span>
-                        <span class="badge">Copilot</span> 
-                    </div>
+                    <img src="sys2.jpg" alt="Dashboard Modules" class="sys-img">
+                    <h4>2nd Picture: Dashboard Modules</h4>
+                    <p>Real-time system overview and business analytics.</p>
+                </div>
+                <div class="glass-card">
+                    <img src="sys3.jpg" alt="Inventory Module" class="sys-img">
+                    <h4>3rd Picture: Inventory Module</h4>
+                    <p>Smart inventory management using ARIMA-based forecasting.</p>
+                </div>
+                <div class="glass-card">
+                    <img src="sys4.jpg" alt="Event Transactions Module" class="sys-img">
+                    <h4>4th Picture: Event Transactions Module</h4>
+                    <p>Efficient handling of sales and catering event data.</p>
+                </div>
+                <div class="glass-card">
+                    <img src="sys5.jpg" alt="Reports/Announcements Module" class="sys-img">
+                    <h4>5th Picture: Reports/Announcements Module</h4>
+                    <p>Automated reporting for data-driven decision making.</p>
                 </div>
             </div>
         </section>
 
-        <footer class="reveal">
+        <footer>
             <div class="arch-container" style="max-width: 200px; margin-bottom: 2rem;">
-                <img src="photo3.jpg" alt="Connect" class="arch-img">
+                <img src="photo3.jpg" alt="Contact" class="arch-img">
             </div>
             <h2 class="section-title">Let's Connect</h2>
-            <p>📍 Quezon City, Metro Manila </p>
-            <p>📧 veranosean91@gmail.com</p>
-            <p>📞 +639 63-516-6723</p>
+            <p style="font-size: 1.2rem; margin-bottom: 0.5rem;">📍 Quezon City, Metro Manila</p>
+            <p style="font-size: 1.2rem; margin-bottom: 0.5rem;">📧 veranosean91@gmail.com</p>
+            <p style="font-size: 1.2rem;">📞 +639 63-516-6723</p>
         </footer>
     </div>
 
@@ -228,14 +210,12 @@
             for (var i = 0; i < reveals.length; i++) {
                 var windowHeight = window.innerHeight;
                 var elementTop = reveals[i].getBoundingClientRect().top;
-                var elementVisible = 100;
-                if (elementTop < windowHeight - elementVisible) {
+                if (elementTop < windowHeight - 100) {
                     reveals[i].classList.add("active");
                 }
             }
         }
         window.addEventListener("scroll", reveal);
-        // Ensure reveal triggers for content already in view
         window.addEventListener("load", reveal);
     </script>
 </body>
