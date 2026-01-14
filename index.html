@@ -35,12 +35,32 @@
 
         .hide-overlay { transform: translateY(-100%); }
 
+        /* --- LIGHTBOX MODAL --- */
+        #lightbox {
+            display: none;
+            position: fixed;
+            z-index: 10000;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            justify-content: center; align-items: center;
+            cursor: pointer;
+        }
+
+        #lightbox img {
+            max-width: 90%;
+            max-height: 80%;
+            border: 2px solid var(--primary);
+            border-radius: 10px;
+            box-shadow: 0 0 30px rgba(0, 210, 255, 0.5);
+        }
+
         /* --- ARCH DESIGN --- */
         .arch-container {
             width: 100%; max-width: 350px; aspect-ratio: 3/4;
             border-radius: 200px 200px 0 0;
             overflow: hidden; border: 2px solid var(--primary);
             margin: 0 auto; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            cursor: pointer;
         }
 
         .arch-img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
@@ -89,7 +109,12 @@
 
         .glass-card:hover { transform: translateY(-5px); border-color: var(--primary); }
 
-        .sys-img { width: 100%; border-radius: 15px; margin-bottom: 1rem; border: 1px solid var(--glass); }
+        .sys-img { 
+            width: 100%; border-radius: 15px; margin-bottom: 1rem; 
+            border: 1px solid var(--glass); cursor: pointer;
+            transition: 0.3s;
+        }
+        .sys-img:hover { filter: brightness(1.2); }
 
         .badge {
             display: inline-block; background: rgba(0, 210, 255, 0.1);
@@ -105,12 +130,16 @@
 </head>
 <body>
 
+    <div id="lightbox" onclick="closeLightbox()">
+        <img id="lightbox-img" src="">
+    </div>
+
     <div id="landing-overlay">
         <button class="btn-main" onclick="enterPortfolio()">Visit Portfolio</button>
     </div>
 
     <header class="container reveal">
-        <div class="arch-container" style="margin-bottom: 2rem;">
+        <div class="arch-container" style="margin-bottom: 2rem;" onclick="openLightbox('photo1.jpg')">
             <img src="photo1.jpg" alt="Sean Gabriel Verano" class="arch-img">
         </div>
         <h1 style="font-size: 3.5rem; margin-bottom: 0.5rem;">SEAN GABRIEL VERANO</h1>
@@ -126,20 +155,20 @@
         <section id="about" class="reveal">
             <h2 class="section-title">About Me</h2>
             <div class="glass-card">
-                <p style="font-size: 1.2rem;">Hi! I'm Sean, a dedicated and highly trustworthy professional with a background in Information Technology. I specialize in providing excellent customer service and administrative support. I pride myself on maintaining a positive attitude and ensuring the absolute accuracy and thoroughness of every task assigned to me.</p>
+                <p style="font-size: 1.2rem;">Hi! I'm Sean, a dedicated and highly trustworthy professional with a background in Information Technology[cite: 4]. I specialize in customer service and administrative support, ensuring absolute accuracy and thoroughness in every task[cite: 5, 7].</p>
             </div>
         </section>
 
         <section class="reveal">
             <div style="display: flex; flex-wrap: wrap; gap: 40px; align-items: center;">
-                <div class="arch-container" style="flex: 1; min-width: 300px;">
+                <div class="arch-container" style="flex: 1; min-width: 300px;" onclick="openLightbox('photo2.jpg')">
                     <img src="photo2.jpg" alt="Education" class="arch-img">
                 </div>
                 <div style="flex: 1; min-width: 300px;">
                     <h2 class="section-title">Education</h2>
                     <p><strong>2023 - PRESENT</strong></p>
-                    <p style="font-size: 1.2rem; margin: 0.5rem 0;">Bachelor of Science in Information Technology</p>
-                    <p style="color: var(--primary);">Colegio de Sta. Teresa de Avila </p>
+                    <p style="font-size: 1.2rem; margin: 0.5rem 0;">Bachelor of Science in Information Technology [cite: 10]</p>
+                    <p style="color: var(--primary);">Colegio de Sta. Teresa de Avila [cite: 10]</p>
                 </div>
             </div>
         </section>
@@ -148,11 +177,9 @@
             <h2 class="section-title">Technical Toolkit</h2>
             <div class="glass-card">
                 <div style="display: flex; flex-wrap: wrap; justify-content: center;">
-                    <span class="badge">Vb.net</span> <span class="badge">Python</span>
-                    <span class="badge">JavaScript</span> <span class="badge">MySQL/MariaDB</span>
-                    <span class="badge">Visual Studio Code</span> <span class="badge">Figma</span>
-                    <span class="badge">Canva</span> <span class="badge">Copilot</span>
-                    <span class="badge">Excel</span> <span class="badge">PowerPoint</span> 
+                    <span class="badge">Vb.net [cite: 23]</span> <span class="badge">Python [cite: 23]</span>
+                    <span class="badge">JavaScript [cite: 23]</span> <span class="badge">MySQL [cite: 23]</span>
+                    <span class="badge">Figma [cite: 22]</span> <span class="badge">Canva [cite: 22]</span>
                 </div>
             </div>
         </section>
@@ -161,27 +188,27 @@
             <h2 class="section-title">System Samples</h2>
             <div class="bento-grid">
                 <div class="glass-card">
-                    <img src="sys1.jpg" alt="Login Module" class="sys-img">
+                    <img src="sys1.jpg" alt="Login Module" class="sys-img" onclick="openLightbox(this.src)">
                     <h4>1st Picture: Login Module</h4>
                     <p>Secure authentication with role-based access control.</p>
                 </div>
                 <div class="glass-card">
-                    <img src="sys2.jpg" alt="Dashboard Modules" class="sys-img">
+                    <img src="sys2.jpg" alt="Dashboard Modules" class="sys-img" onclick="openLightbox(this.src)">
                     <h4>2nd Picture: Dashboard Modules</h4>
                     <p>Real-time system overview and business analytics.</p>
                 </div>
                 <div class="glass-card">
-                    <img src="sys3.jpg" alt="Inventory Module" class="sys-img">
+                    <img src="sys3.jpg" alt="Inventory Module" class="sys-img" onclick="openLightbox(this.src)">
                     <h4>3rd Picture: Inventory Module</h4>
                     <p>Smart inventory management using ARIMA-based forecasting.</p>
                 </div>
                 <div class="glass-card">
-                    <img src="sys4.jpg" alt="Event Transactions Module" class="sys-img">
+                    <img src="sys4.jpg" alt="Event Transactions Module" class="sys-img" onclick="openLightbox(this.src)">
                     <h4>4th Picture: Event Transactions Module</h4>
                     <p>Efficient handling of sales and catering event data.</p>
                 </div>
                 <div class="glass-card">
-                    <img src="sys5.jpg" alt="Reports/Announcements Module" class="sys-img">
+                    <img src="sys5.jpg" alt="Reports/Announcements Module" class="sys-img" onclick="openLightbox(this.src)">
                     <h4>5th Picture: Reports/Announcements Module</h4>
                     <p>Automated reporting for data-driven decision making.</p>
                 </div>
@@ -189,13 +216,13 @@
         </section>
 
         <footer>
-            <div class="arch-container" style="max-width: 200px; margin-bottom: 2rem;">
+            <div class="arch-container" style="max-width: 200px; margin-bottom: 2rem;" onclick="openLightbox('photo3.jpg')">
                 <img src="photo3.jpg" alt="Contact" class="arch-img">
             </div>
             <h2 class="section-title">Let's Connect</h2>
-            <p style="font-size: 1.2rem; margin-bottom: 0.5rem;">📍 Quezon City, Metro Manila</p>
-            <p style="font-size: 1.2rem; margin-bottom: 0.5rem;">📧 veranosean91@gmail.com</p>
-            <p style="font-size: 1.2rem;">📞 +639 63-516-6723</p>
+            <p style="font-size: 1.2rem; margin-bottom: 0.5rem;">📍 Quezon City, Metro Manila [cite: 36]</p>
+            <p style="font-size: 1.2rem; margin-bottom: 0.5rem;">📧 veranosean91@gmail.com [cite: 34]</p>
+            <p style="font-size: 1.2rem;">📞 +639 63-516-6723 [cite: 32]</p>
         </footer>
     </div>
 
@@ -203,6 +230,17 @@
         function enterPortfolio() {
             document.getElementById('landing-overlay').classList.add('hide-overlay');
             setTimeout(reveal, 300);
+        }
+
+        function openLightbox(src) {
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            lightboxImg.src = src;
+            lightbox.style.display = 'flex';
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').style.display = 'none';
         }
 
         function reveal() {
